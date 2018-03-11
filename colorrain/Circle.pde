@@ -21,9 +21,6 @@ class Circle {
 
   void wide() {
     w = 10 + 100*(255-t)/255;
-  }
-
-  void display() {
     blue = 255 - t;
     green = ogreen*(t/255);
     red = ored*(t/255);
@@ -32,6 +29,10 @@ class Circle {
     } else if (green < 0) {
       green = 0;
     }
+  }
+
+  void display() {
+    
     fill(red, green, blue, t);
     noStroke();
     ellipse(x, y, w, w);
