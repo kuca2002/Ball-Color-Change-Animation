@@ -8,6 +8,8 @@ class Fatman {
   int exp3 = 0;
   int expc = 5;
   float end = dist(width/2, height, 0, 0);
+  boolean end1 = true;
+  boolean explode = false;
   void normalo() {
     noStroke();
     fill(0);
@@ -37,28 +39,37 @@ class Fatman {
     //println("c = " + c + "  change = " + change + " mouseY = " + mouseY/320.0);
   }
 
-  boolean check() {
+  void check() {
     if (dist(width/2, height - 50, mouseX, mouseY) < 25 || dist(width/2, height - 50, mouseX, mouseY) < 35) {
-      return true;
-    } else {
-      return false;
+      explode = true;
+      live = false;
     }
   }
 
   void explode() {
-    fill(234, 43, 31);
-    ellipse(width/2, height, 100+exp1, 70+exp1);
-    ellipse(width/2, height - 50, 50+exp1, 50+exp1);
-    exp1 += expc;
-    if (exp1 > 300) {
+    if (end1) {
+      fill(234, 43, 31);
+      ellipse(width/2, height, 100+exp1, 70+exp1);
+      ellipse(width/2, height - 50, 50+exp1, 50+exp1);
+      exp1 += expc;
+    }
+    if (exp1 > 300 && exp1 < end*5 && end1) {
       exp2 += expc -1;
       fill(237, 174, 73);
       ellipse(width/2, height, 75+exp2, 70+exp2);
     }
-    if (exp2 > 200) {
+    if (exp2 > 200 && exp2 < 2620 && end1) {
       exp3 +=expc -2;
       fill(249, 223, 116);
       ellipse(width/2, height, 50+exp3, 70+exp3);
     }
+    if (exp3 == 1812) {
+      expc = 0;
+      end1 = false;
+      ellipse(width/2, height, 50+exp3, 70+exp3);
+      explode = false;
+      ending = true;
+    }
+    //println(exp1 + " " + exp2 + " " + exp3);
   }
 }

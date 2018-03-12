@@ -1,7 +1,7 @@
 class Rain {
   float x; //xcoordinate
   float y; //ycoordinate
-  int speed; 
+  float speed; 
   float w; //width
   float h; //height
   float t; //transperency
@@ -23,6 +23,7 @@ class Rain {
   
   void move(){
     y = y + speed;
+    speed = speed + 0.2;
   }
   
   boolean state(){

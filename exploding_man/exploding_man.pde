@@ -1,13 +1,17 @@
 ArrayList<Rain> raindrops;
 Fatman man;
+Menu menu;
 int i = 0; //index
 float check = 0;
 float count;
-boolean live = true;
+boolean live = false;
+boolean start = true;
+boolean ending = false;
 float distance;
 float danger;
 float fwidth;
 float fheight;
+PFont raleway;
 
 
 void setup() {
@@ -16,18 +20,20 @@ void setup() {
   noStroke();
   raindrops = new ArrayList<Rain>();
   man = new Fatman();
+  menu = new Menu();
+  raleway = createFont("Raleway-Black", 40);
 }
 
 void draw() {
   //index stuff
   i++;
-  
+
   distance = dist(width/2, height, mouseX, mouseY);
   danger = dist(width/2, height, 0, height);
   if (distance < danger) {
-    count = pow(2,distance/200);
+    count = pow(2, distance/200);
   } else {
-    count = pow(2,danger/200);
+    count = pow(2, danger/200);
   }
   //rain
   background(255);
@@ -57,11 +63,18 @@ void draw() {
       man.normalo();
     }
   }
-  if (man.check()){
-    live = false;
+  if (live) {
+    man.check();
   }
-  if (!live){
+  if (man.explode) {
     man.explode();
+  }
+
+  //menu
+  if (start) {
+    menu.starting();
+  } else if (ending) {
+    menu.end();
   }
 }
 
