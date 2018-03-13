@@ -1,17 +1,20 @@
 ArrayList<Rain> raindrops;
 Fatman man;
 Menu menu;
+Animation circle;
 int i = 0; //index
 float check = 0;
 float count;
 boolean live = false;
 boolean start = true;
 boolean ending = false;
+boolean prolouge = false;
 float distance;
 float danger;
 float fwidth;
 float fheight;
 PFont raleway;
+
 
 
 void setup() {
@@ -21,6 +24,7 @@ void setup() {
   raindrops = new ArrayList<Rain>();
   man = new Fatman();
   menu = new Menu();
+  circle = new Animation(width/2, height/2 - 50);
   raleway = createFont("Raleway-Black", 40);
 }
 
@@ -75,7 +79,10 @@ void draw() {
     menu.starting();
   } else if (ending) {
     menu.end();
+  } else if (prolouge) {
+    menu.prolouge();
   }
+  
 }
 
 void mousePressed() {
