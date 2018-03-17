@@ -2,13 +2,15 @@ ArrayList<Rain> raindrops;
 Fatman man;
 Menu menu;
 Animation circle;
+Animation starting;
 int i = 0; //index
 float check = 0;
 float count;
 boolean live = false;
-boolean start = true;
+boolean start = false; //should be true
 boolean ending = false;
 boolean prolouge = false;
+boolean prostart = true; //should be false
 float distance;
 float danger;
 float fwidth;
@@ -25,6 +27,7 @@ void setup() {
   man = new Fatman();
   menu = new Menu();
   circle = new Animation(width/2, height/2 - 50);
+  starting = new Animation(20,1);
   raleway = createFont("Raleway-Black", 40);
 }
 
@@ -81,6 +84,8 @@ void draw() {
     menu.end();
   } else if (prolouge) {
     menu.prolouge();
+  } else if (prostart) {
+    starting.prostart();
   }
   
 }

@@ -51,7 +51,8 @@ class Menu {
 
     if (mouseX > x - w/2 && mouseX < x + w/2 && mouseY > y - h/2 && mouseY < y + h/2 && mousePressed == true) {
       start = false; 
-      prolouge = true;
+      //prolouge = true;
+      prostart = true;
     }
   }
 
@@ -61,7 +62,7 @@ class Menu {
   void prolouge() {
     if (state == 0) {
       prolouge = false;
-      live = true;
+      prostart = true;
     }
     background(0);
     fill(255);
